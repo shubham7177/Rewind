@@ -1,0 +1,292 @@
+/* ==========================================================================
+   REWIND - Nostalgic Cassette Music Experience
+   Core Design System, Variables, Typography, Layout Grid & Paper Grain
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&family=VT323&family=Caveat:wght@600;700&display=swap');
+
+:root {
+  /* Color Palette */
+  --bg-peach: #F7B8A5;
+  --bg-peach-light: #FDE8E1;
+  --bg-peach-dark: #E89E88;
+  
+  --panel-cream: #FAF2E6;
+  --panel-cream-light: #FDF9F2;
+  --panel-cream-dark: #ECE0CE;
+  
+  --accent-coral: #EA7C69;
+  --accent-coral-glow: #FF9482;
+  --accent-teal: #4E878C;
+  --accent-teal-dark: #376569;
+  --accent-gold: #D8A45F;
+  --accent-mint: #62A89E;
+  
+  --ink-black: #2B2523;
+  --ink-charcoal: #3D3533;
+  --ink-muted: #7A6F6D;
+  --ink-faint: #B0A5A3;
+
+  /* Hardware Colors */
+  --deck-chassis: #FAF2E6;
+  --deck-bezel: #2B2523;
+  --enamel-black: #1A1716;
+  --vu-green: #38C172;
+  --vu-amber: #F6993F;
+  --vu-red: #E3342F;
+
+  /* Shadows & Depth */
+  --shadow-ink: 3px 3px 0px var(--ink-black);
+  --shadow-ink-lg: 5px 5px 0px var(--ink-black);
+  --shadow-ink-sm: 2px 2px 0px var(--ink-black);
+  --shadow-recessed: inset 2px 2px 4px rgba(0,0,0,0.18), inset -1px -1px 2px rgba(255,255,255,0.8);
+  --shadow-raised: 2px 2px 0px var(--ink-black), inset 1px 1px 1px rgba(255,255,255,0.7);
+
+  /* Typography */
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-digital: 'VT323', monospace;
+  --font-hand: 'Caveat', cursive;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-smooth: 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Global Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-main);
+  background-color: var(--bg-peach);
+  color: var(--ink-black);
+  user-select: none;
+}
+
+/* Desktop Viewport Fit (Zero Scrollbar) */
+@media (min-width: 961px) {
+  html, body {
+    overflow: hidden;
+    height: 100vh;
+    max-height: 100vh;
+  }
+}
+
+/* Paper Grain Texture & Ambient Background */
+body {
+  background: 
+    radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.35) 0%, transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(234, 124, 105, 0.3) 0%, transparent 50%),
+    linear-gradient(135deg, #F9C5B4 0%, #F5AB95 50%, #EE9982 100%);
+  position: relative;
+  min-height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.045'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 990;
+}
+
+/* App Container */
+.app-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 68px 32px 20px;
+  position: relative;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Header & Navigation (Full Left Edge Fixed Position)
+   ========================================================================== */
+.app-header {
+  position: fixed;
+  top: 18px;
+  left: 24px;
+  display: flex;
+  align-items: center;
+  z-index: 800;
+}
+
+.header-left-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Logo */
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon-box {
+  width: 42px;
+  height: 42px;
+  background: var(--panel-cream);
+  border: 2.5px solid var(--ink-black);
+  border-radius: 10px;
+  box-shadow: var(--shadow-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  transform: rotate(-3deg);
+  transition: transform var(--transition-fast);
+}
+
+.brand-icon-box:hover {
+  transform: rotate(0deg) scale(1.06);
+}
+
+.brand-text-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--ink-black);
+  line-height: 1;
+  text-shadow: 1px 1px 0px rgba(255,255,255,0.6);
+}
+
+.brand-tagline {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  color: var(--ink-charcoal);
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   Live Time & Active Listeners Pill (Top Left Edge)
+   ========================================================================== */
+.live-listener-pill {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--panel-cream);
+  border: 2px solid var(--ink-black);
+  border-radius: 24px;
+  padding: 6px 14px;
+  box-shadow: var(--shadow-ink);
+  font-family: var(--font-display);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--ink-black);
+  letter-spacing: 0.4px;
+  transition: transform var(--transition-fast);
+}
+
+.live-listener-pill:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-ink-lg);
+}
+
+.live-clock-text {
+  font-weight: 800;
+  letter-spacing: 0.6px;
+}
+
+.pill-divider {
+  color: var(--ink-muted);
+  opacity: 0.6;
+  font-weight: 400;
+}
+
+.live-pulse-dot {
+  width: 7.5px;
+  height: 7.5px;
+  background: #22C55E;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 7px rgba(34, 197, 94, 0.8);
+  animation: liveDotPulse 2s infinite ease-in-out;
+}
+
+@keyframes liveDotPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 7px rgba(34, 197, 94, 0.9);
+  }
+  50% {
+    transform: scale(0.85);
+    opacity: 0.55;
+    box-shadow: 0 0 3px rgba(34, 197, 94, 0.4);
+  }
+}
+
+.live-count-text {
+  font-weight: 700;
+  color: var(--ink-charcoal);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Main Grid Layout
+   ========================================================================== */
+.main-stage-grid {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  max-width: 1280px;
+  width: 100%;
+}
+
+/* ==========================================================================
+   Retro Toast Notification
+   ========================================================================== */
+.retro-notification {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--ink-black);
+  color: #FAF2E6;
+  border: 2px solid var(--accent-coral);
+  border-radius: 30px;
+  padding: 10px 24px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: all var(--transition-smooth);
+}
+
+.retro-notification.is-visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}

@@ -1,0 +1,199 @@
+/* ==========================================================================
+   REWIND - Responsive & Mobile Layouts
+   Adapts layout for 16:9 Desktop (Zero scrollbar), Tablet & Mobile (<768px)
+   ========================================================================== */
+
+/* Medium Desktops & Tablets Landscape */
+@media (max-width: 1120px) {
+  .app-container {
+    padding: 64px 20px 20px;
+  }
+
+  .main-stage-grid {
+    grid-template-columns: 360px 1fr;
+    gap: 20px;
+  }
+
+  .deck-meters-row {
+    grid-template-columns: 105px 1fr auto;
+    gap: 8px;
+    padding: 6px 8px;
+  }
+
+  .piano-key-btn {
+    height: 40px;
+  }
+}
+
+/* Tablets Portrait & Small Screens (<= 960px) */
+@media (max-width: 960px) {
+  html, body {
+    overflow-y: auto !important;
+    height: auto !important;
+    min-height: 100vh;
+  }
+
+  .app-container {
+    height: auto !important;
+    min-height: 100vh;
+    padding: 76px 20px 32px;
+    justify-content: flex-start;
+  }
+
+  .main-stage-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .hero-deck-chassis {
+    max-width: 480px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .center-storytelling-stage {
+    max-width: 480px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .art-panel-inner-frame {
+    max-height: none;
+  }
+
+  .headphone-wire-svg {
+    display: none;
+  }
+}
+
+/* Mobile Devices (<= 640px) */
+@media (max-width: 640px) {
+  html, body {
+    overflow-y: auto !important;
+    height: auto !important;
+  }
+
+  .app-container {
+    padding: 14px 14px 28px;
+    justify-content: flex-start;
+    height: auto !important;
+  }
+
+  .app-header {
+    position: static;
+    margin-bottom: 16px;
+    left: auto;
+    top: auto;
+  }
+
+  .header-left-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .brand-title {
+    font-size: 24px;
+  }
+
+  .brand-tagline {
+    font-size: 9.5px;
+  }
+
+  .live-listener-pill {
+    padding: 5px 12px;
+    font-size: 11.5px;
+  }
+
+  .hero-deck-chassis {
+    padding: 14px 12px;
+    border-radius: 16px;
+    gap: 12px;
+  }
+
+  .deck-tape-body {
+    height: 150px;
+    padding: 6px 8px;
+  }
+
+  .deck-tape-window {
+    height: 44px;
+    padding: 0 8px;
+  }
+
+  .spool-gear {
+    width: 22px;
+    height: 22px;
+  }
+
+  .deck-meters-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .tape-counter-block {
+    justify-content: space-between;
+  }
+
+  .deck-piano-keys-row {
+    gap: 4px;
+    padding: 5px;
+  }
+
+  .piano-key-btn {
+    height: 40px;
+  }
+
+  .key-icon {
+    font-size: 11px;
+  }
+
+  .key-label {
+    font-size: 7px;
+  }
+
+  .rotary-knob-dial {
+    width: 40px;
+    height: 40px;
+  }
+
+  .knob-name {
+    font-size: 8px;
+  }
+
+  /* Center Visual Storytelling on Mobile */
+  .artwork-panels-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* Library Drawer becomes Bottom Sheet */
+  .library-drawer-container {
+    top: auto;
+    bottom: 0;
+    right: 0;
+    width: 100vw;
+    max-width: 100vw;
+    height: 84vh;
+    border-left: none;
+    border-top: 3.5px solid var(--ink-black);
+    border-radius: 20px 20px 0 0;
+    transform: translateY(105%);
+    padding: 16px 14px 28px;
+    box-sizing: border-box;
+  }
+
+  .library-drawer-container.is-open {
+    transform: translateY(0%);
+  }
+
+  .library-tape-card {
+    height: 330px;
+    min-height: 330px;
+  }
+
+  .retro-modal-window {
+    padding: 18px 14px;
+  }
+}

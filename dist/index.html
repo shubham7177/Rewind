@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REWIND — Nostalgic Cassette Music Experience</title>
+  <meta name="description" content="Step back into the golden analog era with REWIND. An illustrated 1980s/1990s cassette music player with tactile mechanical controls, rotating tape spools, dynamic VU meters, and curated retro playlists.">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/cassette-deck.css">
+  <link rel="stylesheet" href="css/visual-panels.css">
+  <link rel="stylesheet" href="css/library-drawer.css">
+  <link rel="stylesheet" href="css/modal.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- ====================================================================
+         Header & Navigation (Brand + Live Clock & Listener Pill)
+         ==================================================================== -->
+    <header class="app-header" role="banner">
+      
+      <div class="header-left-group">
+        <!-- Brand Logo -->
+        <div class="header-brand">
+          <div class="brand-icon-box" aria-hidden="true">📼</div>
+          <div class="brand-text-block">
+            <h1 class="brand-title">REWIND</h1>
+            <span class="brand-tagline">GOOD MUSIC • GOOD TIMES</span>
+          </div>
+        </div>
+
+        <!-- Live Clock & Listeners Badge (Top-Left) -->
+        <div class="live-listener-pill" id="live-listener-pill" aria-label="Live Time and Active Listeners">
+          <span class="live-clock-text" id="live-clock">8:24 PM</span>
+          <span class="pill-divider" aria-hidden="true">|</span>
+          <span class="live-pulse-dot" aria-hidden="true"></span>
+          <span class="live-count-text" id="live-listener-count">512 listening</span>
+        </div>
+      </div>
+
+    </header>
+
+    <!-- ====================================================================
+         Main Stage: Left Hero Cassette Deck + Center Framed Artwork Panels
+         ==================================================================== -->
+    <main class="main-stage-grid">
+
+      <!-- ================================================================
+           LEFT HERO: Master Vintage Cassette Deck
+           ================================================================ -->
+      <section class="hero-deck-chassis" id="cassette-deck" aria-label="Cassette Deck Hardware Player">
+        
+        <!-- Corner Screws -->
+        <div class="chassis-screw screw-tl" aria-hidden="true"></div>
+        <div class="chassis-screw screw-tr" aria-hidden="true"></div>
+        <div class="chassis-screw screw-bl" aria-hidden="true"></div>
+        <div class="chassis-screw screw-br" aria-hidden="true"></div>
+
+        <!-- 1. Cassette Compartment & Loaded Tape -->
+        <div class="cassette-compartment-frame">
+          <div class="deck-tape-body" id="deck-tape-body">
+            
+            <div class="deck-tape-label">
+              <div class="label-top-row">
+                <span class="label-side-badge" id="deck-tape-side">SIDE A</span>
+                <span class="label-type-stamp" id="deck-tape-type">TYPE I NORMAL BIAS</span>
+              </div>
+
+              <div class="label-title-area">
+                <div class="deck-tape-title" id="deck-tape-title">LYRICS HITS &amp; AESTHETIC VIBES</div>
+                <div class="deck-tape-artist" id="deck-tape-artist">Sahiba • Aditya Rikhari</div>
+              </div>
+
+              <!-- Transparent Tape Window & Dual 6-Spoke Spools -->
+              <div class="deck-tape-window">
+                <!-- Left Spool Assembly -->
+                <div class="tape-spool-assembly">
+                  <div class="tape-pack-roll" id="left-tape-pack"></div>
+                  <div class="spool-gear" id="left-spool-gear"></div>
+                </div>
+
+                <!-- Window Calibration Ruler -->
+                <div class="window-ruler" aria-hidden="true">
+                  <span class="ruler-tick"></span>
+                  <span class="ruler-tick"></span>
+                  <span class="ruler-tick center"></span>
+                  <span class="ruler-tick"></span>
+                  <span class="ruler-tick"></span>
+                </div>
+
+                <!-- Right Spool Assembly -->
+                <div class="tape-spool-assembly">
+                  <div class="tape-pack-roll" id="right-tape-pack"></div>
+                  <div class="spool-gear" id="right-spool-gear"></div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 2. Floral Enamel Accent Band -->
+        <div class="floral-accent-band" aria-hidden="true">
+          <div class="band-motif-left">
+            <span>🌸</span>
+            <span>🌿</span>
+            <span>🌸</span>
+          </div>
+          <div class="band-center-badge">★ HIGH FIDELITY STEREO CASSETTE SYSTEM ★</div>
+          <div class="band-motif-right">
+            <span>🌸</span>
+            <span>🌿</span>
+            <span>🌸</span>
+          </div>
+        </div>
+
+        <!-- 3. Meters, Mechanical Counter & Dolby NR -->
+        <div class="deck-meters-row">
+          
+          <!-- Mechanical 4-Digit Roller Tape Counter -->
+          <div class="tape-counter-block">
+            <div class="counter-drum-window" aria-label="Tape Counter">
+              <span class="counter-digit" id="counter-d1">0</span>
+              <span class="counter-digit" id="counter-d2">0</span>
+              <span class="counter-digit" id="counter-d3">0</span>
+              <span class="counter-digit" id="counter-d4">0</span>
+            </div>
+            <button class="counter-reset-btn" id="counter-reset-btn" type="button" title="Reset Tape Counter">RESET</button>
+          </div>
+
+          <!-- Dual Channel Dynamic VU Meter -->
+          <div class="deck-vu-meter-group" aria-label="Stereo VU Meter">
+            <!-- Left Channel -->
+            <div class="vu-channel-row" id="vu-meter-left">
+              <span class="vu-ch-label">L</span>
+              <div class="vu-led-strip">
+                <span class="vu-segment green"></span>
+                <span class="vu-segment green"></span>
+                <span class="vu-segment green"></span>
+                <span class="vu-segment green"></span>
+                <span class="vu-segment green"></span>
+                <span class="vu-segment green"></span>
+                <span class="vu-segment amber"></span>
+                <span class="vu-segment amber"></span>
+                <span class="vu-segment red"></span>
+                <span class="vu-segment red"></span>
+              </div>
+            </div>
+            <!-- Right Channel -->
+            <div class="vu-channel-row" id="vu-meter-right">
+              <span class="vu-ch-label">R</span>
+              <div class="vu-led-strip">
+                <span class="vu-segment green"></span>
+                <span class="vu-segment green"></span>
+                <span class="vu-segment green"></span>
+                <span class="vu-segment green"></span>
+                <span class="vu-segment green"></span>
+                <span class="vu-segment green"></span>
+                <span class="vu-segment amber"></span>
+                <span class="vu-segment amber"></span>
+                <span class="vu-segment red"></span>
+                <span class="vu-segment red"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dolby Noise Reduction Switch -->
+          <div class="deck-dolby-control">
+            <div class="dolby-header">
+              <span class="dolby-led led-lit" id="dolby-led"></span>
+              <span>DOLBY NR</span>
+            </div>
+            <div class="toggle-switch-housing switch-on" id="dolby-toggle-switch" role="switch" aria-checked="true" title="Toggle Dolby Noise Reduction">
+              <div class="toggle-switch-lever"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 4. Tactile Mechanical 3D Piano Keys -->
+        <div class="deck-piano-keys-row" role="group" aria-label="Tape Transport Controls">
+          
+          <button class="piano-key-btn key-rew" id="key-rew" type="button" title="Rewind 10s (Key: R)">
+            <span class="key-icon">⏪</span>
+            <span class="key-label">REW</span>
+          </button>
+
+          <button class="piano-key-btn key-prev" id="key-prev" type="button" title="Previous Track (Key: Left Arrow)">
+            <span class="key-icon">⏮</span>
+            <span class="key-label">PREV</span>
+          </button>
+
+          <button class="piano-key-btn key-play" id="key-play" type="button" title="Play (Key: Space)">
+            <span class="key-icon">▶</span>
+            <span class="key-label">PLAY</span>
+          </button>
+
+          <button class="piano-key-btn key-pause" id="key-pause" type="button" title="Pause (Key: Space)">
+            <span class="key-icon">⏸</span>
+            <span class="key-label">PAUSE</span>
+          </button>
+
+          <button class="piano-key-btn key-next" id="key-next" type="button" title="Next Track (Key: Right Arrow)">
+            <span class="key-icon">⏭</span>
+            <span class="key-label">NEXT</span>
+          </button>
+
+          <button class="piano-key-btn key-ffwd" id="key-ffwd" type="button" title="Fast Forward 10s (Key: F)">
+            <span class="key-icon">⏩</span>
+            <span class="key-label">F.FWD</span>
+          </button>
+
+        </div>
+
+        <!-- 5. Rotary Knobs & Headphone Cord -->
+        <div class="deck-knobs-section">
+          
+          <!-- Volume Knob -->
+          <div class="knob-control-unit">
+            <div class="rotary-knob-dial" id="knob-volume" tabindex="0" role="slider" aria-label="Volume">
+              <div class="knob-pointer"></div>
+            </div>
+            <span class="knob-name">VOLUME</span>
+          </div>
+
+          <!-- Balance Knob -->
+          <div class="knob-control-unit">
+            <div class="rotary-knob-dial" id="knob-balance" tabindex="0" role="slider" aria-label="Balance">
+              <div class="knob-pointer"></div>
+            </div>
+            <span class="knob-name">BALANCE</span>
+          </div>
+
+          <!-- Bass Knob -->
+          <div class="knob-control-unit">
+            <div class="rotary-knob-dial" id="knob-bass" tabindex="0" role="slider" aria-label="Bass">
+              <div class="knob-pointer"></div>
+            </div>
+            <span class="knob-name">BASS</span>
+          </div>
+
+          <!-- Treble Knob -->
+          <div class="knob-control-unit">
+            <div class="rotary-knob-dial" id="knob-treble" tabindex="0" role="slider" aria-label="Treble">
+              <div class="knob-pointer"></div>
+            </div>
+            <span class="knob-name">TREBLE</span>
+          </div>
+
+          <!-- Headphone Jack -->
+          <div class="phones-jack-housing">
+            <div class="jack-socket" title="Phones 6.35mm Output">
+              <div class="jack-hole"></div>
+            </div>
+            <span class="knob-name">PHONES</span>
+          </div>
+
+          <!-- Illustrated Curved Headphone Cord -->
+          <svg class="headphone-wire-svg" width="80" height="220" viewBox="0 0 80 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 45 0 C 45 40, 10 50, 15 110 C 20 170, 70 180, 50 220" stroke="#2B2523" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+            <path d="M 45 0 C 45 40, 10 50, 15 110 C 20 170, 70 180, 50 220" stroke="#FAF2E6" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.6"/>
+          </svg>
+
+        </div>
+
+      </section>
+
+      <!-- ================================================================
+           CENTER / RIGHT: Two Framed Nostalgic Artwork Panels
+           ================================================================ -->
+      <section class="center-storytelling-stage" aria-label="Visual Artwork Stage">
+        
+        <div class="artwork-panels-grid">
+          
+          <!-- Artwork Card 1: Sunset Beach Camper -->
+          <div class="framed-art-panel" id="artwork-panel-1">
+            <div class="art-panel-inner-frame">
+              <img class="art-panel-img" src="assets/images/sunset-beach.jpg" alt="Nostalgic sunset beach camper illustration" loading="eager">
+            </div>
+            <div class="panel-caption-bar">
+              <span class="panel-caption">🌅 Sunset Camper &amp; Coastal Breeze</span>
+            </div>
+          </div>
+
+          <!-- Artwork Card 2: Anime Girl with Retro Headphones -->
+          <div class="framed-art-panel" id="artwork-panel-2">
+            <div class="art-panel-inner-frame">
+              <img class="art-panel-img" src="assets/images/girl-headphones.jpg" alt="Anime girl overlooking sunset sea with vintage pink headphones" loading="eager">
+            </div>
+            <div class="panel-caption-bar">
+              <span class="panel-caption">🎧 Walkman Sunset Serenade</span>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- ====================================================================
+       FLOATING RIGHT-EDGE LIBRARY TAB (Middle of Right Screen Edge)
+       ==================================================================== -->
+  <button class="floating-library-tab" id="library-toggle-tab" type="button" aria-label="Open Cassette Library">
+    <div class="tab-vertical-content">
+      <span class="tab-icon">📼</span>
+      <span class="tab-text">LIBRARY</span>
+      <span class="tab-badge" id="library-tab-badge">4</span>
+    </div>
+  </button>
+
+  <!-- ====================================================================
+       RIGHT SLIDING CASSETTE LIBRARY DRAWER
+       ==================================================================== -->
+  <div class="library-backdrop" id="library-backdrop"></div>
+  
+  <aside class="library-drawer-container" id="library-drawer" aria-label="Cassette Collection Storage">
+    
+    <!-- Drawer Header -->
+    <div class="drawer-header-bar">
+      <div class="drawer-title-group">
+        <h2 class="drawer-heading">CASSETTE BOX</h2>
+        <span class="drawer-count-badge" id="library-tape-count">4 TAPES</span>
+      </div>
+      <button class="drawer-close-btn" id="library-close-btn" type="button" aria-label="Close Library">✕</button>
+    </div>
+
+    <!-- Quick Action: Add Tape Button -->
+    <div class="drawer-action-header">
+      <span style="font-size: 11px; font-weight: 700; color: var(--ink-charcoal);">COLLECTED TAPES</span>
+      <button class="add-tape-btn" id="add-tape-open-btn" type="button">+ ADD YOUTUBE PLAYLIST</button>
+    </div>
+
+    <!-- Vertical Cassette Carousel -->
+    <div class="cassette-carousel-scroll" id="cassette-carousel">
+      <!-- Cassette cards populated dynamically by js/library.js -->
+    </div>
+
+  </aside>
+
+  <!-- ====================================================================
+       MODAL: "ADD YOUTUBE PLAYLIST TAPE" (Clean & Simple)
+       ==================================================================== -->
+  <div class="modal-backdrop" id="modal-backdrop"></div>
+
+  <div class="retro-modal-window" id="custom-tape-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    
+    <div class="modal-header-row">
+      <div class="modal-heading-group">
+        <span style="font-size: 22px;">📼</span>
+        <h2 class="modal-heading" id="modal-title">ADD YOUTUBE PLAYLIST TAPE</h2>
+      </div>
+      <button class="modal-close-btn" id="modal-close-btn" type="button" aria-label="Close Modal">✕</button>
+    </div>
+
+    <form class="modal-form-body" onsubmit="event.preventDefault();">
+      
+      <!-- Helpful Guidance Note -->
+      <div class="modal-guide-box">
+        <p>🎵 <strong>Paste any YouTube Playlist or Video Link below.</strong></p>
+        <p style="margin-top: 4px; font-size: 12px; color: var(--ink-charcoal);">
+          REWIND will automatically create a retro cassette tape with your music and add it directly into your Library Box.
+        </p>
+      </div>
+
+      <!-- YouTube Playlist URL Field -->
+      <div class="form-group">
+        <label class="form-label" for="custom-tape-youtube-url">YOUTUBE PLAYLIST / VIDEO LINK</label>
+        <input class="form-input-text" type="url" id="custom-tape-youtube-url" placeholder="https://www.youtube.com/playlist?list=... or https://youtu.be/..." required autofocus>
+      </div>
+
+      <!-- Status Bar -->
+      <div class="recording-status-box" id="modal-recording-status">
+        READY TO INSERT
+      </div>
+
+      <!-- Action Button -->
+      <button class="record-action-btn" id="record-tape-btn" type="button">
+        📼 INSERT PLAYLIST CASSETTE
+      </button>
+
+    </form>
+
+  </div>
+
+  <!-- ====================================================================
+       RETRO TOAST NOTIFICATION BADGE
+       ==================================================================== -->
+  <div class="retro-notification" id="retro-notification" role="status" aria-live="polite">
+    NOTIFICATION MESSAGE
+  </div>
+
+  <!-- ====================================================================
+       JavaScript Application Modules
+       ==================================================================== -->
+  <script src="js/data/global-tapes.js"></script>
+  <script src="js/data/india-tapes.js"></script>
+  <script src="js/audio-engine.js"></script>
+  <script src="js/player-deck.js"></script>
+  <script src="js/library.js"></script>
+  <script src="js/youtube-tape.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>

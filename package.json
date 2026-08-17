@@ -1,0 +1,20 @@
+{
+  "name": "rewind-cassette-player",
+  "version": "1.0.0",
+  "description": "Nostalgic 1980s/1990s illustrated cassette music player web application",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python -m http.server 8085",
+    "build": "python -c \"import os, shutil; shutil.rmtree('dist', ignore_errors=True); os.makedirs('dist', exist_ok=True); [shutil.copytree(d, f'dist/{d}') for d in ['assets','css','js']]; shutil.copy('index.html', 'dist/index.html'); print('Production build complete in ./dist')\"",
+    "start": "python -m http.server 8085"
+  },
+  "keywords": [
+    "cassette",
+    "nostalgia",
+    "audio",
+    "retro",
+    "web-audio-api"
+  ],
+  "author": "",
+  "license": "MIT"
+}

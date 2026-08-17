@@ -1,0 +1,643 @@
+/* ==========================================================================
+   REWIND - Left Hero Vintage Cassette Player Deck
+   Chassis, Transparent Door, Rotating Spools, Floral Enamel,
+   Roller Counter, Segmented VU Meter, Piano Keys, Knobs & Cord
+   ========================================================================== */
+
+.hero-deck-chassis {
+  background: var(--panel-cream);
+  border: 3px solid var(--ink-black);
+  border-radius: 18px;
+  padding: 14px 14px 16px;
+  box-shadow: var(--shadow-ink-lg);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Corner Screws */
+.chassis-screw {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  background: #D4C9BA;
+  border: 1.5px solid var(--ink-black);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chassis-screw::after {
+  content: "";
+  width: 5px;
+  height: 1.5px;
+  background: var(--ink-black);
+}
+
+.screw-tl { top: 8px; left: 8px; transform: rotate(25deg); }
+.screw-tr { top: 8px; right: 8px; transform: rotate(70deg); }
+.screw-bl { bottom: 8px; left: 8px; transform: rotate(-45deg); }
+.screw-br { bottom: 8px; right: 8px; transform: rotate(15deg); }
+
+/* ==========================================================================
+   Cassette Compartment & Loaded Tape
+   ========================================================================== */
+.cassette-compartment-frame {
+  background: #1F1C1B;
+  border: 2.5px solid var(--ink-black);
+  border-radius: 12px;
+  padding: 8px 10px;
+  position: relative;
+  box-shadow: inset 0 3px 8px rgba(0,0,0,0.5);
+  overflow: hidden;
+  transition: all var(--transition-fast);
+}
+
+.cassette-compartment-frame.deck-door-open {
+  transform: perspective(600px) rotateX(12deg) scale(0.98);
+  box-shadow: inset 0 8px 20px rgba(0,0,0,0.7), 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.cassette-compartment-frame.deck-snap-pulse {
+  animation: deckSnapShake 0.3s ease;
+}
+
+@keyframes deckSnapShake {
+  0% { transform: scale(0.97); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1.0); }
+}
+
+/* Illustrated Cassette Body in Deck */
+.deck-tape-body {
+  --tape-primary-color: #EA7C69;
+  --tape-accent-color: #4E878C;
+  --tape-label-color: #FAF2E6;
+
+  width: 100%;
+  height: 156px;
+  background: var(--tape-primary-color);
+  border: 2px solid var(--ink-black);
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 10px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+  transition: background var(--transition-smooth);
+}
+
+/* Tape Label Sticker */
+.deck-tape-label {
+  background: var(--tape-label-color);
+  border: 1.5px solid var(--ink-black);
+  border-radius: 6px;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 6px 10px;
+  overflow: hidden;
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0.4), rgba(0,0,0,0.03));
+}
+
+.label-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1.5px solid var(--ink-black);
+  padding-bottom: 3px;
+}
+
+.label-side-badge {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 800;
+  background: var(--ink-black);
+  color: #FAF2E6;
+  padding: 1.5px 6px;
+  border-radius: 3px;
+  letter-spacing: 0.8px;
+}
+
+.label-type-stamp {
+  font-family: var(--font-display);
+  font-size: 8.5px;
+  font-weight: 700;
+  color: var(--ink-charcoal);
+  letter-spacing: 0.6px;
+}
+
+.label-title-area {
+  margin: 2px 0;
+  text-align: center;
+}
+
+.deck-tape-title {
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--ink-black);
+  letter-spacing: 0.4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.deck-tape-artist {
+  font-family: var(--font-hand);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--accent-coral);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: -2px;
+}
+
+/* Cassette Transparent Window & Spools */
+.deck-tape-window {
+  width: 100%;
+  height: 48px;
+  background: rgba(30, 26, 25, 0.9);
+  border: 1.5px solid var(--ink-black);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  position: relative;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.6);
+}
+
+.window-ruler {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 3px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.ruler-tick {
+  width: 1.5px;
+  height: 8px;
+  background: #FAF2E6;
+}
+
+.ruler-tick.center {
+  height: 13px;
+  background: var(--accent-coral);
+}
+
+/* Tape Spool Hub & Gear */
+.tape-spool-assembly {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Tape pack roll thickness progression */
+.tape-pack-roll {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  background: #3A2518;
+  border-radius: 50%;
+  box-shadow: 0 0 3px rgba(0,0,0,0.8);
+  transition: transform 0.2s linear;
+}
+
+#left-tape-pack {
+  transform: scale(0.95);
+}
+
+#right-tape-pack {
+  transform: scale(0.4);
+}
+
+/* 6-Spoke Plastic Gear Cog */
+.spool-gear {
+  width: 24px;
+  height: 24px;
+  background: #FAF2E6;
+  border: 1.5px solid var(--ink-black);
+  border-radius: 50%;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  transition: transform 0.05s linear;
+}
+
+.spool-gear::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: var(--ink-black);
+  border-radius: 50%;
+}
+
+.spool-gear::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  border: 1.5px dashed var(--ink-black);
+  border-radius: 50%;
+}
+
+.spool-gear.is-spinning {
+  animation: reelSpin 2.4s linear infinite;
+}
+
+.spool-gear.spin-fast-forward {
+  animation: reelSpin 0.4s linear infinite;
+}
+
+.spool-gear.spin-fast-reverse {
+  animation: reelSpinReverse 0.4s linear infinite;
+}
+
+@keyframes reelSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes reelSpinReverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+/* ==========================================================================
+   Floral Enamel Accent Strip
+   ========================================================================== */
+.floral-accent-band {
+  background: var(--enamel-black);
+  border: 1.5px solid var(--ink-black);
+  border-radius: 6px;
+  height: 28px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.8), var(--shadow-ink-sm);
+  overflow: hidden;
+}
+
+.band-motif-left, .band-motif-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #F8B4A6;
+  font-size: 11px;
+}
+
+.band-center-badge {
+  font-family: var(--font-display);
+  font-size: 8.5px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: var(--accent-gold);
+  text-shadow: 0 0 4px rgba(216, 164, 95, 0.5);
+}
+
+/* ==========================================================================
+   Deck Meter & Roller Counter Bar
+   ========================================================================== */
+.deck-meters-row {
+  display: grid;
+  grid-template-columns: 115px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  background: var(--panel-cream-dark);
+  border: 1.5px solid var(--ink-black);
+  border-radius: 8px;
+  padding: 6px 10px;
+  box-shadow: inset 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Mechanical 4-Digit Roller Counter */
+.tape-counter-block {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.counter-drum-window {
+  background: #151312;
+  border: 1.5px solid var(--ink-black);
+  border-radius: 4px;
+  padding: 2px 4px;
+  display: flex;
+  gap: 2px;
+  box-shadow: inset 0 2px 3px rgba(0,0,0,0.8);
+}
+
+.counter-digit {
+  font-family: var(--font-digital);
+  font-size: 16px;
+  font-weight: 700;
+  color: #F0EDE8;
+  background: #252120;
+  padding: 0 3px;
+  border-radius: 2px;
+  border: 1px solid #110F0E;
+  line-height: 1;
+}
+
+.counter-reset-btn {
+  background: #D95D4A;
+  border: 1.5px solid var(--ink-black);
+  border-radius: 3px;
+  padding: 3px 5px;
+  font-family: var(--font-display);
+  font-size: 7.5px;
+  font-weight: 800;
+  color: #FAF2E6;
+  cursor: pointer;
+  box-shadow: 1px 1px 0px var(--ink-black);
+  transition: transform 0.05s ease;
+}
+
+.counter-reset-btn.is-pressed {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+
+/* Dual Dynamic VU Meter */
+.deck-vu-meter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.vu-channel-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.vu-ch-label {
+  font-family: var(--font-display);
+  font-size: 8px;
+  font-weight: 800;
+  color: var(--ink-charcoal);
+  width: 8px;
+}
+
+.vu-led-strip {
+  display: flex;
+  gap: 2px;
+  background: #1A1716;
+  border: 1px solid var(--ink-black);
+  border-radius: 2px;
+  padding: 2px 3px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.8);
+}
+
+.vu-segment {
+  width: 6px;
+  height: 6px;
+  border-radius: 1px;
+  opacity: 0.22;
+  transition: opacity 0.05s linear;
+}
+
+.vu-segment.green { background: var(--vu-green); }
+.vu-segment.amber { background: var(--vu-amber); }
+.vu-segment.red { background: var(--vu-red); }
+
+.vu-segment.lit {
+  opacity: 1;
+  box-shadow: 0 0 4px currentColor;
+}
+
+/* Dolby Switch & LED */
+.deck-dolby-control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.dolby-header {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--font-display);
+  font-size: 7.5px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+}
+
+.dolby-led {
+  width: 5px;
+  height: 5px;
+  background: #4A3F3D;
+  border-radius: 50%;
+  border: 1px solid var(--ink-black);
+}
+
+.dolby-led.led-lit {
+  background: #FF5A45;
+  box-shadow: 0 0 5px #FF5A45;
+}
+
+.toggle-switch-housing {
+  width: 28px;
+  height: 15px;
+  background: #1C1918;
+  border: 1.5px solid var(--ink-black);
+  border-radius: 8px;
+  position: relative;
+  cursor: pointer;
+  padding: 1.5px;
+}
+
+.toggle-switch-lever {
+  width: 10px;
+  height: 10px;
+  background: #FAF2E6;
+  border: 1px solid var(--ink-black);
+  border-radius: 50%;
+  transition: transform var(--transition-fast);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+.toggle-switch-housing.switch-on .toggle-switch-lever {
+  transform: translateX(13px);
+  background: var(--accent-coral);
+}
+
+/* ==========================================================================
+   Tactile 3D Mechanical Piano Keys
+   ========================================================================== */
+.deck-piano-keys-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 5px;
+  background: var(--panel-cream-dark);
+  border: 2px solid var(--ink-black);
+  border-radius: 10px;
+  padding: 6px 8px;
+  box-shadow: var(--shadow-recessed);
+}
+
+.piano-key-btn {
+  height: 44px;
+  background: linear-gradient(to bottom, #FAF5ED 0%, #E8DEC9 100%);
+  border: 1.5px solid var(--ink-black);
+  border-radius: 5px;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 0px var(--ink-black), inset 1px 1px 0px rgba(255,255,255,0.9);
+  transition: all 0.08s ease;
+}
+
+.piano-key-btn:hover {
+  background: #FFFDF8;
+}
+
+.piano-key-btn:active,
+.piano-key-btn.is-pressed {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0px var(--ink-black), inset 0 2px 3px rgba(0,0,0,0.3);
+}
+
+.piano-key-btn.key-play.is-active {
+  background: var(--accent-coral);
+  color: #FAF2E6;
+}
+
+.key-icon {
+  font-size: 12px;
+  line-height: 1;
+}
+
+.key-label {
+  font-family: var(--font-display);
+  font-size: 7.5px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   Rotary Knobs & Headphone Cord Row
+   ========================================================================== */
+.deck-knobs-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2px;
+  position: relative;
+}
+
+.knob-control-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.rotary-knob-dial {
+  width: 44px;
+  height: 44px;
+  background: radial-gradient(circle, #FDF7EE 0%, #DFCDB7 85%, #BDB09F 100%);
+  border: 2px solid var(--ink-black);
+  border-radius: 50%;
+  position: relative;
+  cursor: ns-resize;
+  box-shadow: 2px 2px 0px var(--ink-black), inset 0 1px 3px rgba(255,255,255,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.knob-pointer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2.5px;
+  height: 16px;
+  margin-top: -8px;
+  margin-left: -1.25px;
+  transform-origin: center center;
+}
+
+.knob-pointer::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 2.5px;
+  height: 5px;
+  background: var(--accent-coral);
+  border-radius: 2px;
+}
+
+.knob-name {
+  font-family: var(--font-display);
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  color: var(--ink-charcoal);
+}
+
+/* Headphone Jack & Cord */
+.phones-jack-housing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.jack-socket {
+  width: 18px;
+  height: 18px;
+  background: #1E1B1A;
+  border: 1.5px solid var(--ink-black);
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 2px 3px rgba(0,0,0,0.8);
+}
+
+.jack-hole {
+  width: 8px;
+  height: 8px;
+  background: #000;
+  border-radius: 50%;
+}
+
+.headphone-wire-svg {
+  position: absolute;
+  top: 30px;
+  left: -18px;
+  pointer-events: none;
+  z-index: 5;
+}
