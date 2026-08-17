@@ -1,0 +1,11 @@
+# System & IDE files
+.DS_Store
+Thumbs.db
+*.log
+.gemini/
+
+# Dependency directories (if added later)
+node_modules/
+npm-debug.log*
+
+# Optional distribution (can be kept or ignored based on preference)
